@@ -113,7 +113,8 @@ const openlink = () => {
 };
 
 const loadSvg = () => {
-  fetch(`https://simpleicons.org/icons/${props.logo}.svg`)
+  if(props.logo) {
+    fetch(`https://simpleicons.org/icons/${props.logo}.svg`)
     .then((response) => response.text())
     .then((svg) => {
       const parser = new DOMParser();
@@ -130,6 +131,7 @@ const loadSvg = () => {
         type: "error",
       });
     });
+  }
 };
 
 const convertToSVG = () => {
