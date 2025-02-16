@@ -22,3 +22,6 @@ pnpm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+需将package.json的  "type": "module"注释在运行

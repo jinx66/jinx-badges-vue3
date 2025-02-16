@@ -1,20 +1,27 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import BadegesComponent from '../views/badgesComponent.vue'
+import ExampleComponent from '../views/exampleComponent.vue'
 const routes: Array<RouteRecordRaw> = [
+ 
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/badges',
+    name: 'badges',
+    component: BadegesComponent
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/example',
+    name: 'exampleComponent',
+    component: ExampleComponent
+  },
+  {
+    path: '/:pathMatch(.*)*',  // 捕获所有未匹配的路径
+    redirect: '/example'  // 重定向到 "/example" 页面
+  },
+  {
+    path: '/',
+    redirect: '/example'  // 访问根路径时重定向到 "/example"
+  },
 ]
 
 const router = createRouter({

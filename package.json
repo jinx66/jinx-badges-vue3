@@ -1,13 +1,34 @@
 {
-  "name": "my-vue3-ts-project",
-  "version": "0.1.0",
-  "private": true,
+  "name": "jinx-badge-vue3",
+  "version": "0.2.2",
+  "type": "module",
+  "files": [
+    "dist",
+    "dist/assets",
+    "src/views/badgesComponent.vue"
+  ],
+  "main": "dist/cjs/default.cjs.js",
+  "module": "dist/esm/default.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/default.esm.js",
+      "require": "./dist/cjs/default.cjs.js"
+    }
+  },
+  "style": "dist/assets/default.css",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vite build",
+    "prepublishOnly": "npm run build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "dom-to-image": "^2.6.0",
+    "element-plus": "^2.9.4",
+    "rollup": "^4.34.7",
+    "vite": "^6.1.0",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
