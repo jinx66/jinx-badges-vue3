@@ -1,6 +1,6 @@
 <!-- 在线调试 -->
 <template>
-  <BadgesComponent
+  <WebComponent
     :link="link"
     :logo="logo"
     :leftText="leftText"
@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import BadgesComponent from "./badgesComponent.vue";
+import WebComponent from "./webComponent.vue";
 
 const route = useRoute(); // 获取路由对象
 

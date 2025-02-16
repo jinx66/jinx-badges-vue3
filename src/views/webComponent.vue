@@ -1,4 +1,5 @@
 <template>
+  <div>
     <div
       class="badge"
       @click="openlink()"
@@ -19,6 +20,43 @@
         <div class="right-text">{{ rightText }}</div>
       </div>
     </div>
+
+    <div class="form-container">
+      <div style="width: 700px">
+        <div style="margin-bottom: 10px">SVG Data URL:</div>
+        <el-input
+          type="textarea"
+          :rows="2"
+          placeholder="svg内容"
+          :autosize="{ minRows: 2, maxRows: 30 }"
+          style="height: 100%"
+          v-model="svgContent"
+        ></el-input>
+      </div>
+      <div>
+        <img src="./image.png" style="width: 800px; height: 540px" />
+        <el-form model="form" label-width="100px">
+          <el-form-item label="当前地址:">
+            <el-input v-model="form.url" type="textarea" />
+          </el-form-item>
+          <div style="margin-bottom: 40px">
+            <div style="margin-bottom: 10px;color: brown; font-size: 15px"
+              >参考上面配置，在网址后面拼接你所需要的参数名后点击跳转，例如: </div
+            >
+            <div style="margin-bottom: 40px;color: brown; font-size: 13px"
+              > 
+              <a href="https://badges.xianjianheng.com/example?logo=github&leftText=github&rightText=&logoColor=%23fff&leftColor=black">https://badges.xianjianheng.com/example?logo=github&leftText=github&rightText=&logoColor=%23fff&leftColor=black</a></div
+            >
+          </div>
+          <el-form-item>
+            <el-button type="primary" @click="go">跳转至当前地址</el-button>
+            <el-button type="primary" @click="copySVG">复制SVG</el-button>
+            <el-button type="primary" @click="downloadSVG">下载SVG</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
