@@ -1,21 +1,20 @@
 {
   "name": "jinx-badge-vue3",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "module",
   "files": [
     "dist",
     "dist/assets",
     "src/views/badgesComponent.vue"
   ],
-  "main": "dist/cjs/default.cjs.js",
-  "module": "dist/esm/default.esm.js",
+  "main": "dist/cjs/badgesComponent.cjs.cjs.js",
+  "module": "dist/esm/badgesComponent.cjs.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/esm/default.esm.js",
-      "require": "./dist/cjs/default.cjs.js"
+      "import": "./dist/esm/badgesComponent.cjs.esm.js",
+      "require": "./dist/cjs/badgesComponent.cjs.cjs.js"
     }
   },
-  "style": "dist/assets/default.css",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
