@@ -139,7 +139,7 @@ const convertToSVG = () => {
   domtoimage
     .toSvg(node)
     .then((dataUrl) => {
-      console.log("SVG 转换完成:", dataUrl);
+      // console.log("SVG 转换完成:", dataUrl);
       svgContent.value = dataUrl.replace(
         /^data:image\/svg\+xml;charset=utf-8,/,
         ""

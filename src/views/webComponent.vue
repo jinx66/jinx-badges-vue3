@@ -33,9 +33,10 @@
           v-model="svgContent"
         ></el-input>
       </div>
-      <div>
-        <img src="./image.png" style="width: 800px; height: 540px" />
-        <el-form model="form" label-width="100px">
+      <div style="width: 900px;margin-left: 40px;margin-top: 30px;">
+        <v-md-editor v-model="markdownText"  style="width: 1200px; height: 440px;;"></v-md-editor>
+        <!-- <img src="./image.png" style="width: 800px; height: 540px" /> -->
+        <el-form model="form" label-width="100px" style="margin-top: 20px">
           <el-form-item label="当前地址:">
             <el-input v-model="form.url" type="textarea" />
           </el-form-item>
@@ -45,7 +46,7 @@
             >
             <div style="margin-bottom: 40px;color: brown; font-size: 13px"
               > 
-              <a href="https://badges.xianjianheng.com/example?logo=github&leftText=github&rightText=&logoColor=%23fff&leftColor=black">https://badges.xianjianheng.com/example?logo=github&leftText=github&rightText=&logoColor=%23fff&leftColor=black</a></div
+              <a :href="exampleLink">{{ exampleLink }}</a></div
             >
           </div>
           <el-form-item>
@@ -121,6 +122,30 @@ const form = reactive({
   url: "",
 });
 const svgContent = ref("");
+const exampleLink = ref(window.location.origin + '/example?logo=github&leftText=github&rightText=&logoColor=%23fff&leftColor=black')
+// console.log(import.meta.env.VITE_APP_API_URL);
+// console.log(process.env.VITE_APP_API_URL);
+
+console.log(process.env.VUE_APP_API_URL);
+console.log(process.env.VUE_APP_ENV);
+
+const markdownText = ref(`
+| 属性名       | 类型   | 默认值       | 描述                                                                           |
+| ------------ | ------ | ------------ | ------------------------------------------------------------------------------ |
+| \`link\`     | String | \`''\`       | 徽章的链接地址。点击徽章时会打开该链接。                                       |
+| \`logo\`     | String | \`'vuedotjs'\` | 徽章左侧显示的图标。支持从 [Simple Icons](https://simpleicons.org/) 加载图标。 |
+| \`leftText\` | String | \`'creator'\`  | 徽章左侧显示的文本。                                                           |
+| \`rightText\`| String | \`'Jinx'\`     | 徽章右侧显示的文本。                                                           |
+| \`leftColor\`| String | \`'#555'\`     | 徽章左侧的背景颜色(十六进制（Hex）颜色格式)。                                 |
+| \`rightColor\`| String | \`'#4c1'\`    | 徽章右侧的背景颜色(十六进制（Hex）颜色格式)。                                 |
+| \`logoColor\` | String | \`'#4c1'\`    | 徽章左侧图标的颜色(十六进制（Hex）颜色格式)。                                 |
+| \`logoWidth\` | String | \`'20px'\`    | 徽章左侧图标的宽。                                                           |
+| \`logoHeight\`| String | \`'20px'\`    | 徽章左侧图标的高。                                                           |
+| \`leftSize\`  | String | \`'14px'\`    | 徽章左侧显示的文本字体大小。                                                 |
+| \`rightSize\` | String | \`'14px'\`    | 徽章右侧显示的文本字体大小。                                                 |
+| \`borderRadius\` | String | \`'6px'\` | 徽章的圆角。                                                                  |
+`);
+
 const logoContainer = ref(null);
 
 // Computed styles
@@ -177,7 +202,7 @@ const convertToSVG = () => {
   domtoimage
     .toSvg(node)
     .then((dataUrl) => {
-      console.log("SVG 转换完成:", dataUrl);
+      // console.log("SVG 转换完成:", dataUrl);
       svgContent.value = dataUrl.replace(
         /^data:image\/svg\+xml;charset=utf-8,/,
         ""
@@ -276,6 +301,9 @@ onMounted(() => {
   }, 500);
 
   form.url = window.location.href;
+
+  // console.log(process.env.VUE_APP_API_URL);
+// console.log(process.env.VUE_APP_ENV);
 });
 </script>
 
@@ -320,5 +348,9 @@ onMounted(() => {
 
 .form-container {
   display: flex;
+}
+
+/deep/ .v-md-editor__editor-wrapper,/deep/  .v-md-editor__toolbar {
+  display: none;
 }
 </style>
